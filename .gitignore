@@ -1,7 +1,7 @@
 /bin/
 
-./nginx/cache/
-./nginx/run/
+/nginx/cache/
+/nginx/run/
 
 /site/apps/index.html
 /site/apps/*/index.html
