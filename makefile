@@ -29,7 +29,17 @@ endif
 
 serve:
 	@echo Load http://localhost:8000 in a web browser...
-	@docker run --read-only -p '8000:8080' -v $(shell pwd)/nginx/cache/:/var/cache/nginx -v $(shell pwd)/nginx/run/:/var/run -it moov/api:latest
+	@docker run --read-only -p '8080:8080' -v $(shell pwd)/nginx/cache/:/var/cache/nginx -v $(shell pwd)/nginx/run/:/var/run -it moov/api:latest
+
+.PHONY: check
+check:
+ifeq ($(OS),Windows_NT)
+	@echo "Skipping checks on Windows, currently unsupported."
+else
+	@wget -O lint-project.sh https://raw.githubusercontent.com/moov-io/infra/master/go/lint-project.sh
+	@chmod +x ./lint-project.sh
+	GOCYCLO_LIMIT=26 time ./lint-project.sh
+endif
 
 dist: build
 ifeq ($(OS),Windows_NT)
