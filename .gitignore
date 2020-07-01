@@ -1,4 +1,7 @@
 /bin/
+misspell*
+staticcheck*
+lint-project.sh
 
 /nginx/cache/
 /nginx/run/
