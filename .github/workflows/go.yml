@@ -31,6 +31,7 @@ jobs:
       run: make check
 
     - name: Build Distribution
+      if: runner.os == 'Linux'
       run: make dist
 
     - name: Upload Code Coverage
