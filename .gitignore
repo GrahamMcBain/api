@@ -2,6 +2,7 @@
 misspell*
 staticcheck*
 lint-project.sh
+coverage.txt
 
 /nginx/cache/
 /nginx/run/
