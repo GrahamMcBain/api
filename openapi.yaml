@@ -21,15 +21,14 @@ info:
     }
     ```
 
-    | Status Code | Summary           | Description                                                                               |
-    |:-----------:|-------------------|-------------------------------------------------------------------------------------------|
-    | 200         | OK                | The request was successful                                                                |
-    | 400         | Bad Request       | The request could not be understood by the server. The Incoming parameters might not be valid |
-    | 401         | Unauthorized      | The supplied credentials, if any, are not sufficient to access the resource               |
-    | 404         | Not Found         | The requested resource is not found                                                       |
-    | 429         | Too Many Requests | Too many requests have been made in a short period of time. Please make requests at a slower rate or contact us. |
-    | 500         | Server Error      | The server could not return the representation due to an internal server error            |
-    | 501         | Not Implemented   | The requested operation is not supported (e.g. supports PUT but not POST etc.)            |
+    | Status Code | Summary           | Description                                                                                                       |
+    |:-----------:|-------------------|-------------------------------------------------------------------------------------------------------------------|
+    | 200         | OK                | The request was successful.                                                                                       |
+    | 400         | Bad Request       | The request could not be understood by the server. The Incoming parameters might not be valid.                    |
+    | 404         | Not Found         | The requested resource is not found or the credentials are not authorized to access it.                           |
+    | 429         | Too Many Requests | Too many requests have been made in a short period of time. Please make requests at a slower rate or contact us.  |
+    | 500         | Server Error      | The server could not return the representation due to an internal server error.                                   |
+    | 501         | Not Implemented   | The requested operation is not supported (e.g. supports PUT but not POST etc.)                                    |
 
     ## Content-Type
 
