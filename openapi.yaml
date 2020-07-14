@@ -154,9 +154,9 @@ components:
   schemas: {}
   securitySchemes:
     GatewayAuth:
-      $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml'
+      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/components/securitySchemes/GatewayAuth"
     LoginAuth:
-      $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml'
+      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/components/securitySchemes/LoginAuth"
 
 security:
   - GatewayAuth: []
