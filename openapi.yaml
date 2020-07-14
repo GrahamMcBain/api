@@ -7,6 +7,8 @@ info:
 
     The Moov API offers two groups for organizating `Customer` records. A `Tenant` is the largest grouping which covers an entire business entity such as an LCC or corporation. Login credentials are tied to a Tenant and is extracted from the credentials provided on each request. An `Organization` is a grouping within a Tenant designed to represent a department (sales, marketing) and can be used for the entire LLC. On signup a Tenant is created with an Organization within through the web UI.
 
+    Organizations allow for custom underwriting, additional risk tolerances, and advanced access controls for Customer and Account objects. They can be used to keep departments of your company separate or restrict specific underwriting conditions. For more information [see popular use-cases of Moov](https://docs.moov.io/how/examples/) on each suggested setup.
+
     <a href="https://raw.githubusercontent.com/moov-io/paygate/master/docs/images/tenant-in-paygate.png" target="_blank">
       <img src="https://raw.githubusercontent.com/moov-io/paygate/master/docs/images/tenant-in-paygate.png" />
     </a>
@@ -56,7 +58,7 @@ info:
   version: v1
   title: Moov API
   contact:
-    email: security@moov.io
+    email: support@moov.io
     url: https://moov.io
   license:
     name: Apache 2.0
