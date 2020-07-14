@@ -1,42 +1,69 @@
 openapi: 3.0.2
 info:
   description: |
-    _Note_: The Moov API and services are under development and could introduce breaking changes while reaching a stable status. We are looking for community feedback so please try out our code, [join the slack organization](https://slack.moov.io/) and give us some feedback! We announce releases on the [mailing list](https://groups.google.com/forum/#!forum/moov-users).
+    The Moov API is an HTTP API served by Moov Financial, Inc for initiating money movements across the ACH payment rail. We follow [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) operations and naming conventions with predictable and standard HTTP status codes. We are available to help with onboarding or issues related to our services on [the Moov slack organization](https://slack.moov.io/) or via [support email](mailto:support@moov.io).
 
-    The Moov API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support [cross-origin resource sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing), allowing you to interact securely with our API from client-side web applications (never expose your secret API key in any public website's client-side code). [JSON](http://www.json.org/) is returned by all API responses, including errors, although you can generate client code via [OpenAPI code generation](https://github.com/OpenAPITools/openapi-generator) or the [OpenAPI editor](https://editor.swagger.io/) to convert responses to appropriate language-specific objects.
+    ## Tenants and Organizations
 
-    The Moov API offers one method of authentication -- OAuth2 access tokens. The OAuth2 authentication is designed for automated access of our API. When an API requires a token generated using OAuth (2-legged), no end user is involved. You generate the token by passing your client credentials (Client ID and Client Secret) in a simple call to Create access token (`/oauth2/token`). The operation returns a token that is valid for a few hours and can be renewed; when it expires, you just repeat the call and get a new token. Making additional token requests will keep generating tokens. There are no hard or soft limits.
+    The Moov API offers two groups for organizating `Customer` records. A `Tenant` is the largest grouping which covers an entire business entity such as an LCC or corporation. Login credentials are tied to a Tenant and is extracted from the credentials provided on each request. An `Organization` is a grouping within a Tenant designed to represent a department (sales, marketing) and can be used for the entire LLC. On signup a Tenant is created with an Organization within through the web UI.
 
-    The Moov API offers many services:
-      - Automated Clearing House (ACH) origination and file management
-      - Transfers management
-      <!-- - Image Cash Ledger (ICL) file creation and modification API -->
-      <!-- - Fed WIRE file creation and modification API -->
+    Organizations allow for custom underwriting, additional risk tolerances, and advanced access controls for Customer and Account objects. They can be used to keep departments of your company separate or restrict specific underwriting conditions. For more information [see popular use-cases of Moov](https://docs.moov.io/how/examples/) on each suggested setup.
 
-    The following order of API operations is suggested to start developing against the Moov API:
+    <a href="https://raw.githubusercontent.com/moov-io/paygate/master/docs/images/tenant-in-paygate.png" target="_blank">
+      <img src="https://raw.githubusercontent.com/moov-io/paygate/master/docs/images/tenant-in-paygate.png" />
+    </a>
 
-      1. [Create a Moov API user](#operation/...) with a unique email address
-      1. Create a source Customer
-         1. Approve
-         1. Create an Account
-            1. Verify or Approve
-      1. Create a destination Customer
-         1. Approve
-         1. Create an Account
-            1. Verify or Approve
-      1. Initiate a Transfer
+    ## Errors
 
-    ACH is implemented a RESTful API enabling ACH transactions to be submitted and received without a deep understanding of a full NACHA file specification. A `Customer` can initiate a `Transfer` as either a push (credit) or pull (debit) to another `Customer`. Customers must have a valid `Account` account for a `Transfer`.
+    The API will respond with various standard HTTP status codes for errors which indicate how to resolve the request's problem. All errors will be in the `application/json` Content-Type with the below structure.
 
-    If you find a security related problem please contact us at [`security@moov.io`](mailto:security@moov.io).
+    ```
+    {
+      "error": "Descriptive message"
+    }
+    ```
+
+    | Status Code | Summary           | Description                                                                                                       |
+    |:-----------:|-------------------|-------------------------------------------------------------------------------------------------------------------|
+    | 200         | OK                | The request was successful.                                                                                       |
+    | 400         | Bad Request       | The request could not be understood by the server. The Incoming parameters might not be valid.                    |
+    | 404         | Not Found         | The requested resource is not found or the credentials are not authorized to access it.                           |
+    | 429         | Too Many Requests | Too many requests have been made in a short period of time. Please make requests at a slower rate or contact us.  |
+    | 500         | Server Error      | The server could not return the representation due to an internal server error.                                   |
+    | 501         | Not Implemented   | The requested operation is not supported (e.g. supports PUT but not POST etc.)                                    |
+
+    ## Content-Type
+
+    All requests and responses will be in the `application/json` MIME Content-Type unless otherwise specified.
+
+    ## Cross-Origin Request Sharing
+
+    We support [cross-origin resource sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing), allowing you to interact securely with our API from client-side web applications (never expose your secret API key in any public website's client-side code).
+
+    ## Versioning
+
+    The Moov API is currently using `/v1/` as the versioning prefix for all endpoints. This results in a base URI of `https://api.moov.io/v1/`.
+
+    ## Clients
+
+    Currently Moov offers a generated [Go client](https://github.com/moov-io/go-client) for usage with our API. The [OpenAPI specification](https://github.com/moov-io/api/blob/master/openapi.yaml) can be used to generate clients in other languages and we are open to supporting additonal languages. Please [contact us](mailto:support@moov.io) with feedback or suggestions.
+
+    ## Authorization
+
+    The Moov API offers one authorization method via a configured OIDC provider for your Tenant. This provider can be Google, Github, LDAP, or another vendor. We leverage OIDC becasue it allows immediate credential revocation, two-factor verification with that provider and a faster signup flow for users.
+
+    ## Security
+
+    Moov continiously monitors and scans our API services for security and privacy issues, but if you find a security related problem please contact us at [`security@moov.io`](mailto:security@moov.io).
   version: v1
   title: Moov API
   contact:
-    email: security@moov.io
+    email: support@moov.io
     url: https://moov.io
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
+  # termsOfService: http://example.com/terms/
   x-logo:
     url: 'https://moov.io/images/logo.png'
     altText: Moov logo
@@ -61,6 +88,24 @@ tags:
       Transfer objects create a transaction initiated by an originator to a receiver with a defined flow and fund amount. The API allows you to create or delete a transfers while the status of the transfer is pending.
 
 paths:
+# Authentication
+  /v1/authenticated:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1authenticated'
+  /v1/identities:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities'
+  /v1/identities/{identityID}:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities~1%7BidentityID%7D'
+  /v1/identities/{identityID}/credentials:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities~1%7BidentityID%7D~1credentials'
+  /v1/identities/{identityID}/credentials/{credentialID}:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities~1%7BidentityID%7D~1credentials~1%7BcredentialID%7D'
+  /v1/invites:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1invites'
+  /v1/invites/{inviteID}:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1invites~1%7BinviteID%7D'
+  /v1/register:
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1register'
+
 # Customers
   /v1/customers:
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers'
@@ -95,14 +140,6 @@ paths:
   /v1/tenants/{tenantID}:
     $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1tenants~1%7BtenantID%7D"
 
-# Micro-Deposits
-  /micro-deposits:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1micro-deposits"
-  /micro-deposits/{microDepositID}:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1micro-deposits~1%7BmicroDepositID%7D"
-  /accounts/{accountID}/micro-deposits:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1accounts~1%7BaccountID%7D~1micro-deposits"
-
 # Organizations
   /v1/organizations:
     $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1organizations"
@@ -115,6 +152,14 @@ paths:
   /v1/transfers/{transferID}:
     $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1transfers~1%7BtransferID%7D"
 
-
 components:
   schemas: {}
+  securitySchemes:
+    GatewayAuth:
+      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/components/securitySchemes/GatewayAuth"
+    LoginAuth:
+      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/components/securitySchemes/LoginAuth"
+
+security:
+  - GatewayAuth: []
+  - LoginAuth: []
