@@ -1,9 +1,10 @@
 body {
-    background-color: #353b43;
+    background-color: #f2f2f2;;
+    font-family: manrope,sans-serif;
 }
 
 #nav {
-    background-color: #1d2024;
+    background-color: #f2f2f2;;
     border-radius: 5px;
     height: 141px;
 }
@@ -23,8 +24,7 @@ body {
     padding: 10px;
 }
 #nav a {
-    color: #737f8a;
-    font-family: anaheim,sans-serif;
+    color: #000000;
     font-size: 16px;
     font-weight: 400;
 }
@@ -33,12 +33,13 @@ body {
 }
 
 #content {
-    background-color: #1d2024;
-    border-radius: 5px;
+    background-color: #000000;
+    border-radius: 20px;
+    margin-left: 5%;
+    width: 90%
 }
 #content h3 {
-    color: #afbac4;
-    font-family: quattrocento sans,sans-serif;
+    color: #f2f2f2;
     padding-top: 25px;
     text-align: center;
 }
@@ -50,7 +51,7 @@ body {
     padding-bottom: 20px;
 }
 #content ul li a {
-    color: #afbac4;
+    color: #f2f2f2;
     font-size: 16pt;
     text-decoration: none;
 }
@@ -58,21 +59,18 @@ body {
     color: #22a3e4;
 }
 #content ul li span {
-    color: #cfcccc;
-    font-family: quattrocento sans,sans-serif;
+    color: #ffffff;
     font-size: 10pt;
 }
 
 #content p {
-    color: #cfcccc;
-    font-family: quattrocento sans,sans-serif;
+    color: #ffffff;
     padding-bottom: 20px;
     padding-left: 10%;
     width: 80%;
 }
 #content p a {
-    color: #afbac4;
-    text-decoration: none;
+    color: #f2f2f2;
 }
 #content p a:hover {
     color: #22a3e4;
