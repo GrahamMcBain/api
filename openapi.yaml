@@ -90,21 +90,21 @@ tags:
 paths:
 # Authentication
   /v1/authenticated:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1authenticated'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1authentication~1authenticated'
   /v1/identities:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities'
   /v1/identities/{identityID}:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities~1%7BidentityID%7D'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities~1%7BidentityID%7D'
   /v1/identities/{identityID}/credentials:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities~1%7BidentityID%7D~1credentials'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities~1%7BidentityID%7D~1credentials'
   /v1/identities/{identityID}/credentials/{credentialID}:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1identities~1%7BidentityID%7D~1credentials~1%7BcredentialID%7D'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities~1%7BidentityID%7D~1credentials~1%7BcredentialID%7D'
   /v1/invites:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1invites'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1invites'
   /v1/invites/{inviteID}:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1invites~1%7BinviteID%7D'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1invites~1%7BinviteID%7D'
   /v1/register:
-    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/paths/~1register'
+    $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1authentication~1register'
 
 # Customers
   /v1/customers:
@@ -156,9 +156,9 @@ components:
   schemas: {}
   securitySchemes:
     GatewayAuth:
-      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/components/securitySchemes/GatewayAuth"
+      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/components/securitySchemes/GatewayAuth"
     LoginAuth:
-      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/openapi.yaml#/components/securitySchemes/LoginAuth"
+      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/components/securitySchemes/LoginAuth"
 
 security:
   - GatewayAuth: []
