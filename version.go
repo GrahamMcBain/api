@@ -4,6 +4,11 @@
 
 package api
 
+import (
+	"time"
+)
+
 func Version() string {
-	return "v2020.01.30.3"
+	// This format mirrors what is in the makefile
+	return time.Now().In(time.UTC).Format("2006.01.02")
 }
