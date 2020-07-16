@@ -28,7 +28,7 @@ else
 endif
 
 serve:
-	@echo Load http://localhost:8000 in a web browser...
+	@echo Load http://localhost:8080 in a web browser...
 	@docker run --read-only -p '8080:8080' -v $(shell pwd)/nginx/cache/:/var/cache/nginx -v $(shell pwd)/nginx/run/:/var/run -it moov/api:latest
 
 .PHONY: check
