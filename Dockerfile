@@ -8,10 +8,10 @@ COPY openapi.yaml openapi.yaml
 
 RUN speccy lint openapi.yaml
 RUN redoc-cli bundle openapi.yaml \
-        --options.theme.menu.backgroundColor="#263238" \
-        --options.theme.menu.textColor="#ffffff" \
-        --options.theme.menu.rightPanel.backgroundColor="#263238" \
-        --options.theme.menu.rightPanel.textColor="#333333" \
+        --options.theme.menu.backgroundColor="#f2f2f2" \
+        --options.theme.menu.textColor="#000000" \
+        --options.theme.menu.rightPanel.backgroundColor="##f2f2f2" \
+        --options.theme.menu.rightPanel.textColor="#000000" \
         --options.nativeScrollbars
 
 FROM nginx:1.19
