@@ -13,10 +13,14 @@ To install with `npm` run the following: `npm install -g @stoplight/prism-cli`.
 
 Then start their server and start calling endpoints.
 
+### Static values
 ```
-prism mock openapiv2.yaml # Static examples
+prism mock https://raw.githubusercontent.com/moov-io/api/master/openapi.yaml
+```
 
-prism mock -d openapiv2.yaml # Dynamic examples
+### Dynamic values
+```
+prism mock -d https://raw.githubusercontent.com/moov-io/api/master/openapi.yaml
 ```
 
 ## Getting Help
