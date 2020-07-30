@@ -7,7 +7,7 @@ info:
 
     The Moov API offers two groups for organizating `Customer` records. A `Tenant` is the largest grouping which covers an entire business entity such as an LCC or corporation. Login credentials are tied to a Tenant and is extracted from the credentials provided on each request. An `Organization` is a grouping within a Tenant designed to represent a department (sales, marketing) and can be used for the entire LLC. On signup a Tenant is created with an Organization within through the web UI.
 
-    Organizations allow for custom underwriting, additional risk tolerances, and advanced access controls for Customer and Account objects. They can be used to keep departments of your company separate or restrict specific underwriting conditions. For more information [see popular use-cases of Moov](https://docs.moov.io/how/examples/) on each suggested setup.
+    Organizations allow for custom underwriting, additional risk tolerances, and advanced access controls for Customer and Account objects. They can be used to keep departments of your company separate or restrict specific underwriting conditions.
 
     <a href="https://raw.githubusercontent.com/moov-io/paygate/master/docs/images/tenant-in-paygate.png" target="_blank">
       <img src="https://raw.githubusercontent.com/moov-io/paygate/master/docs/images/tenant-in-paygate.png" />
@@ -59,19 +59,16 @@ info:
   title: Moov API
   contact:
     email: support@moov.io
-    url: https://moov.io
+    url: 'https://moov.io'
   license:
     name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  # termsOfService: http://example.com/terms/
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
     url: 'https://moov.io/images/logo.png'
     altText: Moov logo
-
 servers:
-  - url: http://localhost:9999
+  - url: 'http://localhost:9999'
     description: Local development
-
 tags:
   - name: Customers
     description: |
@@ -86,80 +83,68 @@ tags:
   - name: Transfers
     description: |
       Transfer objects create a transaction initiated by an originator to a receiver with a defined flow and fund amount. The API allows you to create or delete a transfers while the status of the transfer is pending.
-
 paths:
-# Authentication
   /v1/authenticated:
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1authentication~1authenticated'
   /v1/identities:
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities'
-  /v1/identities/{identityID}:
+  '/v1/identities/{identityID}':
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities~1%7BidentityID%7D'
-  /v1/identities/{identityID}/credentials:
+  '/v1/identities/{identityID}/credentials':
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities~1%7BidentityID%7D~1credentials'
-  /v1/identities/{identityID}/credentials/{credentialID}:
+  '/v1/identities/{identityID}/credentials/{credentialID}':
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1identities~1%7BidentityID%7D~1credentials~1%7BcredentialID%7D'
   /v1/invites:
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1invites'
-  /v1/invites/{inviteID}:
+  '/v1/invites/{inviteID}':
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1invites~1%7BinviteID%7D'
   /v1/register:
     $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/paths/~1authentication~1register'
-
-# Customers
   /v1/customers:
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers'
-  /v1/customers/{customerID}:
+  '/v1/customers/{customerID}':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D'
-  /v1/customers/{customerID}/address:
+  '/v1/customers/{customerID}/address':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1address'
-  /v1/customers/{customerID}/metadata:
+  '/v1/customers/{customerID}/metadata':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1metadata'
-  /v1/customers/{customerID}/status:
+  '/v1/customers/{customerID}/status':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1status'
-  /v1/customers/{customerID}/accounts:
+  '/v1/customers/{customerID}/accounts':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1accounts'
-  /v1/customers/{customerID}/accounts/{accountID}/decrypt:
+  '/v1/customers/{customerID}/accounts/{accountID}/decrypt':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1accounts~1%7BaccountID%7D~1decrypt'
-  /v1/customers/{customerID}/accounts/{accountID}/validate:
+  '/v1/customers/{customerID}/accounts/{accountID}/validate':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1accounts~1%7BaccountID%7D~1validate'
-  /v1/customers/{customerID}/disclaimers:
+  '/v1/customers/{customerID}/disclaimers':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1disclaimers'
-  /v1/customers/{customerID}/documents:
+  '/v1/customers/{customerID}/documents':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1documents'
-  /v1/customers/{customerID}/documents/{documentID}:
+  '/v1/customers/{customerID}/documents/{documentID}':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1documents~1%7BdocumentID%7D'
-  /v1/customers/{customerID}/ofac:
+  '/v1/customers/{customerID}/ofac':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1ofac'
-  /v1/customers/{customerID}/refresh/ofac:
+  '/v1/customers/{customerID}/refresh/ofac':
     $ref: 'https://raw.githubusercontent.com/moov-io/customers/master/openapi.yaml#/paths/~1customers~1%7BcustomerID%7D~1refresh~1ofac'
-
-# Tenants
   /v1/tenants:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1tenants"
-  /v1/tenants/{tenantID}:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1tenants~1%7BtenantID%7D"
-
-# Organizations
+    $ref: 'https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1tenants'
+  '/v1/tenants/{tenantID}':
+    $ref: 'https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1tenants~1%7BtenantID%7D'
   /v1/organizations:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1organizations"
-  /v1/organizations/{organizationID}:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1organizations~1%7BorganizationID%7D"
-
-# Transfers
+    $ref: 'https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1organizations'
+  '/v1/organizations/{organizationID}':
+    $ref: 'https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1organizations~1%7BorganizationID%7D'
   /v1/transfers:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1transfers"
-  /v1/transfers/{transferID}:
-    $ref: "https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1transfers~1%7BtransferID%7D"
-
+    $ref: 'https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1transfers'
+  '/v1/transfers/{transferID}':
+    $ref: 'https://raw.githubusercontent.com/moov-io/paygate/master/api/openapi.yaml#/paths/~1transfers~1%7BtransferID%7D'
 components:
   schemas: {}
   securitySchemes:
     GatewayAuth:
-      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/components/securitySchemes/GatewayAuth"
+      $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/components/securitySchemes/GatewayAuth'
     LoginAuth:
-      $ref: "https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/components/securitySchemes/LoginAuth"
-
+      $ref: 'https://raw.githubusercontent.com/moov-io/identity/master/api/identityapi.yml#/components/securitySchemes/LoginAuth'
 security:
   - GatewayAuth: []
   - LoginAuth: []
